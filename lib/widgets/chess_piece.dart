@@ -10,28 +10,31 @@ class ChessPiece extends StatelessWidget {
   final double size;
 
   ChessPiece({
-    @required this.squareName,
-    @required this.squareColor,
-    @required this.piece,
-    @required this.size,
+    required this.squareName,
+    required this.squareColor,
+    required this.piece,
+    required this.size,
   });
 
   @override
   Widget build(BuildContext context) {
-    final pieceWidget = _buildPiece();
+    final pieceWidget = _buildPiece() ?? Container();
 
     return Draggable<types.HalfMove>(
       data: types.HalfMove(squareName, piece),
       child: pieceWidget,
       feedback: pieceWidget,
-      childWhenDragging: Square(
-        color: squareColor,
-        size: size,
+      childWhenDragging: Container(
+        width: size,
+        height: size,
+        child: Square(
+          color: squareColor,
+        ),
       ),
     );
   }
 
-  Widget _buildPiece() {
+  Widget? _buildPiece() {
     switch (piece.toString()) {
       case 'wr':
         return WhiteRook(size: size);

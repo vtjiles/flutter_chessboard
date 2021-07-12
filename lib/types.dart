@@ -74,14 +74,14 @@ class PieceType {
 class ShortMove {
   final String from;
   final String to;
-  final PieceType promotion;
+  final PieceType? promotion;
 
-  ShortMove({this.from, this.to, this.promotion});
+  ShortMove({required this.from, required this.to, this.promotion});
 }
 
 class HalfMove {
   final String square;
-  final Piece piece;
+  final Piece? piece;
 
   HalfMove(this.square, this.piece);
 }
